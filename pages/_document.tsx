@@ -1,6 +1,5 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
-import Script from 'next/script';
 
 // 只在服务端渲染
 class MyDocument extends Document {
@@ -22,7 +21,7 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
         </Head>
-        <body>
+        <body className="bg-light">
           {/* 内容容器 */}
           <Main />
           {/* 插入脚本 */}
