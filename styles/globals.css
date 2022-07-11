@@ -11,6 +11,35 @@ a {
   text-decoration: none;
 }
 
-* {
-  box-sizing: border-box;
+.card-columns {
+  column-count: 4;
+}
+
+.card-body img {
+  width:100%;
+}
+
+.live2d {
+position: fixed;
+z-index: 999;
+bottom : 0;
+left : 0;
+pointer-events: none;
+}
+
+@media screen and (min-width:768px) {
+  .mArticle{
+      display: none;
+  }
+  .wArticle{
+      display: block;
+  }
+}
+@media screen and (max-width: 768px) {
+  .mArticle{
+      display: block;
+  }
+  .wArticle{
+      display: none;
+  }
 }
