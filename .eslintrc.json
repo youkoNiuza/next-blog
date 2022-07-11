@@ -1,0 +1,36 @@
+{
+  "extends": ["next/core-web-vitals", "prettier"],
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "no-console": "warn", // 页面禁止console
+    "no-shadow": "off", // 禁止局部变量和它外层｜全局变量使用相同名称
+    "no-unused-expressions": "off", // 禁止写入未使用的表达式
+    "no-unused-vars": "off", // 禁止写入未使用的变量
+
+    "no-restricted-syntax": "off", // 禁止某些指定的语法
+    "no-plusplus": "off", // 不校验++和--
+    "no-use-before-define": "warn", // 禁止提前使用
+    "no-continue": "off", // 禁止continue声明
+    "jsx-quotes": ["error", "prefer-double"], // 强制在 JSX 属性中一致使用双引号或单引号
+    "default-case": "off", // switch语句必须要写 default 语句
+    "global-require": "off",
+    "lines-between-class-members": ["error", "always"], // 要求或禁止类成员之间的空行（行间类成员）
+    // indent: [ERROR, 2, { SwitchCase: 1 }],
+    "quotes": ["ERROR", "single"], // 强制一致使用双引号或单引号
+    "semi": ["ERROR", "always"], // 需要在语句末尾使用分号
+    "react/jsx-indent-props": ["error", 2], // 验证 JSX 中的属性和方法缩进
+    "react/jsx-indent": ["error", 2], // 验证 JSX 缩进
+    "max-len": [
+      "error",
+      {
+        "code": 160,
+        "ignoreComments": true,
+        "ignoreTrailingComments": true,
+        "ignoreUrls": true,
+        "ignoreStrings": true,
+        "ignoreTemplateLiterals": true,
+        "ignoreRegExpLiterals": true
+      }
+    ]
+  }
+}
