@@ -1,0 +1,12 @@
+/node_modules
+/public
+/styles
+/.vscode
+/config
+**/*.md
+**/*.svg
+**/*.ejs
+**/*.html
+package.json
+/blog
+/next-pro
