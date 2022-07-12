@@ -21,7 +21,7 @@ class MyDocument extends Document {
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
         </Head>
-        <body className="bg-light">
+        <body className="bg-light total-container">
           {/* 内容容器 */}
           <Main />
           {/* 插入脚本 */}

@@ -1,21 +1,14 @@
 import React, { FC, memo } from 'react';
 import Link from 'next/link';
-import Categories from '../Categories';
+import Categories from '../../Home/Categories';
 import Image from 'next/image';
 
-const data:Data = {
-  // user: {
-  //   username: 'youko',
-  // },
-  categories: [
-    {
-      name: 'test',
-      id:'1'
-    },
-  ]
-};
+interface HeaderPropsType {
+  user?: User;
+  categories: Category[];
+}
 
-const Header:FC = ({  }) => {
+const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
   const renderSearchBar = () => {
     return (
       <form className="form-inline my-2 my-lg-0 ml-5" method="get" action="/search">
@@ -60,11 +53,11 @@ const Header:FC = ({  }) => {
               <a className="nav-link" style={{fontWeight: 'bold', color: '#eee'}} >首页</a>
             </Link>
           </li>
-          <Categories data={data.categories} />
+          <Categories categories={categories} />
         </ul>
         {renderSearchBar()}
         <ul className="navbar-nav ml-auto">
-          {data.user ? renderUserLists(data.user) : renderNoUserList()}
+          {user ? renderUserLists(user) : renderNoUserList()}
         </ul>
       </div>
     </nav>

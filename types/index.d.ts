@@ -9,11 +9,16 @@ interface Category {
 
 interface Hot {
   title: string;
-  id: string;
+  id: number;
   thumbnail?: string;
+  time: Date;
+  content: string;
 }
 
-interface Data {
-  user?: User;
-  categories: Category[];
+interface Article {
+  title: string;
+  id: number;
+  thumbnail?: string;
+  time: Date;
+  content: string;
 }

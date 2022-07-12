@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
+import styles from '/styles/Home.module.css';
 
 interface PlaceholderImagePropsTypes {
   title: string;
   height: string;
   width: string;
-  id: string;
+  id: number;
+  className: string;
 }
 
 const getRandomColor:() => string = () => {
@@ -39,7 +41,7 @@ const fontSize = (height:string) => {
 };
 
 const PlaceholderImage:(props:PlaceholderImagePropsTypes) => JSX.Element = (props) => {
-  const { title, height, width, id } = props;
+  const { title, height, width, id, className } = props;
   const randomColor = getRandomColor();
   const router = useRouter();
   const style = {
@@ -51,9 +53,16 @@ const PlaceholderImage:(props:PlaceholderImagePropsTypes) => JSX.Element = (prop
     color: getReverseColor(randomColor),
     display: 'inline-block',
     fontSize: fontSize(height),
+    fontWeight: 'bold',
+    cursor: 'pointer',
+    overFlow: 'hidden',
   };
   // @ts-ignore
-  return <div style={style} onClick={() => router.push(`article/${id}`)}>{title}</div>;
+  return <div style={style} onClick={() => router.push(`article/${id}`)} className={className} alt={title}>
+    <span style={{wordBreak: 'break-all', whiteSpace: 'pre-wrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+      {title}
+    </span>
+  </div>;
 };
 
 export default React.memo(PlaceholderImage);
