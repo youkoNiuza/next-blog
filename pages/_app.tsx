@@ -5,10 +5,11 @@ import Scripts from 'components/Common/Scripts';
 import { useEffect, memo } from 'react';
 import $ from 'jquery';
 import 'popper.js';
+import Live2D from 'components/Common/Live2D';
+import { fetchUser } from 'core/api/fetchUser';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
-  // import('jquery');
   // @ts-ignore
   import('bootstrap/dist/js/bootstrap.min.js');
   if($('.nav-link')) {
@@ -26,6 +27,7 @@ function MyApp({ Component, pageProps }: AppProps) {
       <Meta />
       <Component {...pageProps} />
       <Scripts />
+      <Live2D />
     </>
   );
 }

@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { useRouter } from 'next/router';
-import styles from '/styles/Home.module.css';
 
 interface PlaceholderImagePropsTypes {
   title: string;
@@ -32,12 +31,12 @@ const getReverseColor: (oldColor:string) => string = (oldColor) => {
 };
 
 
-const fontSize = (height:string) => {
+const fontSize = (height:string, length:number) => {
   if(height.includes('%')){
-    return '';
+    return '12px';
   }
-  let numHeight = parseInt(height.replace('px', ''));
-  return Math.floor(numHeight / 5)+'px';
+  let fontSize = Math.floor(Number(height.replace('px', '')) / length);
+  return fontSize > 36 ? '36px' : fontSize < 12 ? '16px' : fontSize+'px';
 };
 
 const PlaceholderImage:(props:PlaceholderImagePropsTypes) => JSX.Element = (props) => {
@@ -52,14 +51,14 @@ const PlaceholderImage:(props:PlaceholderImagePropsTypes) => JSX.Element = (prop
     backgroundColor: `#${randomColor}`,
     color: getReverseColor(randomColor),
     display: 'inline-block',
-    fontSize: fontSize(height),
+    fontSize: fontSize(height, title.length),
     fontWeight: 'bold',
     cursor: 'pointer',
     overFlow: 'hidden',
   };
   // @ts-ignore
   return <div style={style} onClick={() => router.push(`article/${id}`)} className={className} alt={title}>
-    <span style={{wordBreak: 'break-all', whiteSpace: 'pre-wrap', overflow: 'hidden', textOverflow: 'ellipsis'}}>
+    <span style={{wordBreak: 'break-all', whiteSpace: 'pre-wrap', overflow: 'hidden', textOverflow: 'no-warp'}}>
       {title}
     </span>
   </div>;

@@ -1,14 +1,18 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useState, useEffect } from 'react';
 import Link from 'next/link';
 import Categories from '../../Home/Categories';
 import Image from 'next/image';
+import { fetchCategories } from 'core/api/fetchCategories';
+import { fetchUser } from 'core/api/fetchUser';
+import usePublicData from 'hooks/usePublicData';
 
 interface HeaderPropsType {
   user?: User;
-  categories: Category[];
+  categories?: Category[];
 }
 
-const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
+const Header:React.FC<HeaderPropsType> = (props) => {
+  const { user, categories } = props;
   const renderSearchBar = () => {
     return (
       <form className="form-inline my-2 my-lg-0 ml-5" method="get" action="/search">
@@ -22,7 +26,7 @@ const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
     return (
       <li className="nav-item dropdown" style={{marginRight: '2rem'}}>
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-          {user.username}
+          {user?.username}
         </a>
         <div className="dropdown-menu">
           <a className="dropdown-item" href="/admin">个人中心</a>
@@ -34,7 +38,7 @@ const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
 
   const renderNoUserList = () => (
     <li className="nav-item">
-      <a href="/login" className="nav-link">登录</a>
+      <Link href="/login" className="nav-link">登录</Link>
     </li>
   );
 
@@ -62,6 +66,25 @@ const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
       </div>
     </nav>
   );
+};
+
+export async function getServerSideProps() {
+  try {
+    const fetchCategoryResult = await fetchCategories();
+    const categories = await fetchCategoryResult.json();
+    const fetchUserResult = await fetchUser();
+    const user = await fetchUserResult.json();
+    console.log(categories, user);
+    return {
+      props: {
+        categories,
+        user,
+      }
+    };
+  } catch (error) {
+    console.warn('catech', error);
+    return {};
+  }
 };
 
 export default memo(Header);

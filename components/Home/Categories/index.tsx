@@ -1,11 +1,12 @@
 import * as React from 'react';
 import Link from 'next/link';
-
+import { GetServerSideProps } from 'next';
+import { fetchCategories } from 'core/api/fetchCategories';
 interface CategoriesPropsTypes {
-  categories: Category[]
+  categories?: Category[]
 }
 
-const Categories:(props:CategoriesPropsTypes) => JSX.Element = (props) => {
+const Categories:React.FC<CategoriesPropsTypes> = (props) => {
   const { categories } = props;
   return <>
     {categories && categories.map((category:Category, index:number) => {
@@ -21,5 +22,22 @@ const Categories:(props:CategoriesPropsTypes) => JSX.Element = (props) => {
     })}
   </>;
 };
+
+export const getServerSideProps: GetServerSideProps = async () => {
+  try {
+    const data:Response = await fetchCategories();
+    return {
+      props: data.json(),
+    };
+  } catch (error) {
+    console.warn(error);
+  }
+  return {
+    props: {
+      categories: []
+    }
+  };
+};
+
 
 export default React.memo(Categories);
