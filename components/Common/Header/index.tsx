@@ -1,10 +1,7 @@
 import React, { FC, memo, useState, useEffect } from 'react';
 import Link from 'next/link';
-import Categories from '../../Home/Categories';
+import Categories from '../Categories';
 import Image from 'next/image';
-import { fetchCategories } from 'core/api/fetchCategories';
-import { fetchUser } from 'core/api/fetchUser';
-import usePublicData from 'hooks/usePublicData';
 
 interface HeaderPropsType {
   user?: User;
@@ -57,6 +54,11 @@ const Header:React.FC<HeaderPropsType> = (props) => {
               <a className="nav-link" style={{fontWeight: 'bold', color: '#eee'}} >首页</a>
             </Link>
           </li>
+          <li className="nav-item">
+            <Link href="/list" >
+              <a className="nav-link" style={{fontWeight: 'bold', color: '#eee'}} >全部类别</a>
+            </Link>
+          </li>
           <Categories categories={categories} />
         </ul>
         {renderSearchBar()}
@@ -66,25 +68,6 @@ const Header:React.FC<HeaderPropsType> = (props) => {
       </div>
     </nav>
   );
-};
-
-export async function getServerSideProps() {
-  try {
-    const fetchCategoryResult = await fetchCategories();
-    const categories = await fetchCategoryResult.json();
-    const fetchUserResult = await fetchUser();
-    const user = await fetchUserResult.json();
-    console.log(categories, user);
-    return {
-      props: {
-        categories,
-        user,
-      }
-    };
-  } catch (error) {
-    console.warn('catech', error);
-    return {};
-  }
 };
 
 export default memo(Header);

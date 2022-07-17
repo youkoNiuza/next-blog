@@ -5,9 +5,8 @@ import Footer from 'components/Common/Footer';
 import Article from 'components/Common/Article';
 import { GetServerSideProps } from 'next';
 import Header from 'components/Common/Header';
-import usePublicData from 'hooks/usePublicData';
 import { fetchCategories } from 'core/api/fetchCategories';
-import { fetchUser } from '../../../core/api/fetchUser';
+import { fetchUser } from 'core/api/fetchUser';
 
 interface ArticleDetailPropsType {
   article: Article;
@@ -20,7 +19,7 @@ interface ArticleDetailPropsType {
 const ArticleDetail:React.FC<ArticleDetailPropsType> = ({ article, nxt, prev, categories, user }) => {
   return (
     <>
-      <Head>{article.title}</Head>
+      <Head><title>{article.title}</title></Head>
       <Header categories={categories} user={user}/>
       <Article article={article} nxt={nxt} prev={prev}/>
       <Footer />

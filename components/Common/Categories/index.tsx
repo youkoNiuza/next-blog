@@ -12,7 +12,7 @@ const Categories:React.FC<CategoriesPropsTypes> = (props) => {
     {categories && categories.map((category:Category, index:number) => {
       return (
         <li className="nav-item" key={`${category.name}-${index}`} >
-          <Link href="/article/list/[id]" as={`/article/list/${category.id}`} >
+          <Link href="/list/[id]" as={`/list/${category.id}`} >
             <a className="nav-link">
               {category.name}
             </a>
@@ -22,22 +22,5 @@ const Categories:React.FC<CategoriesPropsTypes> = (props) => {
     })}
   </>;
 };
-
-export const getServerSideProps: GetServerSideProps = async () => {
-  try {
-    const data:Response = await fetchCategories();
-    return {
-      props: data.json(),
-    };
-  } catch (error) {
-    console.warn(error);
-  }
-  return {
-    props: {
-      categories: []
-    }
-  };
-};
-
 
 export default React.memo(Categories);

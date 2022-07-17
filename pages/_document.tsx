@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import { fetchCategories } from 'core/api/fetchCategories';
 
 // 只在服务端渲染
 class MyDocument extends Document {
@@ -31,5 +32,19 @@ class MyDocument extends Document {
     );
   }
 }
+
+export async function getInitialProps() {
+  try {
+    const fetchCategoriesResult = await fetchCategories();
+    const categories = await fetchCategoriesResult.json();
+    return {
+      props: {
+        categories,
+      },
+    };
+  } catch (error) {
+    console.warn(error);
+  }
+};
 
 export default MyDocument;
