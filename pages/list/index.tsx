@@ -13,10 +13,13 @@ const CategoryList:React.FC<CategoryListPropsType> = ({categories, user}) => {
   return (
     <>
       <Head><title>全部栏目</title></Head>
-      <Header  categories={categories} user={user}/>
-      <ul>
-        {categories && categories.map(c => <li key={c.id}><Link href={`list/${c.id}`}>{c.name}</Link></li>)}
-      </ul>
+      <Header categories={categories} user={user}/>
+      <nav style={{minHeight: '90vh'}}>
+        <h2 className="mb-4">全部栏目</h2>
+        <ul>
+          {categories && categories.map(c => <li key={c.id}><Link href={`list/${c.id}`}>{c.name}</Link></li>)}
+        </ul>
+      </nav>
       <Footer />
     </>
   );

@@ -19,6 +19,7 @@ class MyDocument extends Document {
           <meta httpEquiv="x-ua-compatible" content="ie=edge"></meta>
           {/* 网站描述信息 */}
           <meta name="keywords" content="Youko"></meta>
+          <meta lang="zh-CN" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
         </Head>

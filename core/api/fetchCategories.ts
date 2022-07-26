@@ -1,3 +1,5 @@
+import { PORT } from 'core/env';
+
 export async function fetchCategories(){
-  return fetch('http://localhost:52000/api/categories');
+  return fetch(`http://localhost:${PORT}/api/categories`);
 }

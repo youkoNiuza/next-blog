@@ -1,3 +1,5 @@
+import { PORT } from 'core/env';
+
 export async function fetchHots(){
-  return fetch('http://localhost:52000/api/hots');
+  return fetch(`http://localhost:${PORT}/api/hots`);
 }

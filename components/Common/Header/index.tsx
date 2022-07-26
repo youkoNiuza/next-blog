@@ -26,7 +26,7 @@ const Header:React.FC<HeaderPropsType> = (props) => {
           {user?.username}
         </a>
         <div className="dropdown-menu">
-          <a className="dropdown-item" href="/admin">个人中心</a>
+          <a className="dropdown-item" href="https://www.qzzhai.top/admin">个人中心</a>
           <a className="dropdown-item" href="/user/logout">退出</a>
         </div>
       </li>
@@ -35,19 +35,19 @@ const Header:React.FC<HeaderPropsType> = (props) => {
 
   const renderNoUserList = () => (
     <li className="nav-item">
-      <Link href="/login" className="nav-link">登录</Link>
+      <Link href="/login"><a className="nav-link">登录</a></Link>
     </li>
   );
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/admin">
-        <Image src="/img/logo.jpeg" width="30" height="30" alt="Youko's blog" />
+        <Image src="/img/logo.jpeg" width="30px" height="30px" alt="Youko's blog" />
       </a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <button className="navbar-toggler" aria-label="dropdown-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <header className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
             <Link href="/" >
@@ -65,7 +65,7 @@ const Header:React.FC<HeaderPropsType> = (props) => {
         <ul className="navbar-nav ml-auto">
           {user ? renderUserLists(user) : renderNoUserList()}
         </ul>
-      </div>
+      </header>
     </nav>
   );
 };

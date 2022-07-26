@@ -8,6 +8,13 @@ interface ArticlePropsType {
 }
 
 const Article:React.FC<ArticlePropsType> = ({article, prev, nxt}) => {
+  const imgArr = article?.content?.match(/\/?upload\/\w+\.\w+/g);
+  let articleContent = article?.content;
+  if(imgArr?.length){
+    for(const imgSrc of imgArr){
+      articleContent = articleContent.replace(imgSrc, `https://www.qzzhai.top${imgSrc}`);
+    }
+  }
   return (
     <div className="container mt-4">
       <nav>
@@ -26,7 +33,7 @@ const Article:React.FC<ArticlePropsType> = ({article, prev, nxt}) => {
             <span className="mr-1">点击：{ article.hits }</span>
           </p>
         </div>
-        <div className="card-body" dangerouslySetInnerHTML={{__html: article.content}}></div>
+        <article className="card-body" dangerouslySetInnerHTML={{__html: articleContent}}></article>
       </div>
       <nav>
         <ul className="pagination mt-3">
@@ -54,4 +61,4 @@ const Article:React.FC<ArticlePropsType> = ({article, prev, nxt}) => {
   );
 };
 
-export default Article;
+export default React.memo(Article);

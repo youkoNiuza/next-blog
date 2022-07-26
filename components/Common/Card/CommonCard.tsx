@@ -1,6 +1,7 @@
 import * as React from 'react';
 import PlaceHolderImage from 'components/Common/PlaceHolderImage';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 interface CardPropsType {
   article: Hot | Article;
@@ -22,7 +23,7 @@ const CommonCard:(props: CardPropsType) => JSX.Element = ({ article }) => {
           <p className="card-text">
             {article.content.replace(/<[^>]+>/g, '').substring(0, 100)}...
           </p>
-          <a href="/article/<%= article.id %>" className="stretched-link"></a>
+          <Link href={`/article/${article.id}`}><a className="stretched-link"></a></Link>
         </div>
       </div>
     </div>

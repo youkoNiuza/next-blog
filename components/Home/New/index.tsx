@@ -11,7 +11,7 @@ interface NewPropsType {
 const New:(props: NewPropsType) => JSX.Element = ({ articles = [], title = '最新博文', titleDisabled = false }) => {
   const TitleLink = (disabled: boolean) => {
     const clickableLink = (
-      <Link href={'article/list'}>
+      <Link href={'/list'}>
         <h2 className="mb-4" style={{cursor: 'pointer'}}>{title}</h2>
       </Link>
   );

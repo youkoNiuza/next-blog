@@ -1,7 +1,5 @@
 import * as React from 'react';
 import Link from 'next/link';
-import { GetServerSideProps } from 'next';
-import { fetchCategories } from 'core/api/fetchCategories';
 interface CategoriesPropsTypes {
   categories?: Category[]
 }
