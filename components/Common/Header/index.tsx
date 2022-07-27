@@ -1,14 +1,15 @@
-import React, { FC, memo } from 'react';
+import React, { FC, memo, useState, useEffect } from 'react';
 import Link from 'next/link';
-import Categories from '../../Home/Categories';
+import Categories from '../Categories';
 import Image from 'next/image';
 
 interface HeaderPropsType {
   user?: User;
-  categories: Category[];
+  categories?: Category[];
 }
 
-const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
+const Header:React.FC<HeaderPropsType> = (props) => {
+  const { user, categories } = props;
   const renderSearchBar = () => {
     return (
       <form className="form-inline my-2 my-lg-0 ml-5" method="get" action="/search">
@@ -22,11 +23,11 @@ const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
     return (
       <li className="nav-item dropdown" style={{marginRight: '2rem'}}>
         <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" data-toggle="dropdown">
-          {user.username}
+          {user?.username}
         </a>
         <div className="dropdown-menu">
-          <a className="dropdown-item" href="/admin">个人中心</a>
-          <a className="dropdown-item" href="/user/logout">退出</a>
+          <a className="dropdown-item" href="https://www.qzzhai.top/admin">个人中心</a>
+          <a className="dropdown-item" href="https://www.qzzhai.top/user/logout">退出</a>
         </div>
       </li>
     );
@@ -34,23 +35,28 @@ const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
 
   const renderNoUserList = () => (
     <li className="nav-item">
-      <a href="/login" className="nav-link">登录</a>
+      <a href="https://www.qzzhai.top/admin" className="nav-link">登录</a>
     </li>
   );
 
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
       <a className="navbar-brand" href="/admin">
-        <Image src="/img/logo.jpeg" width="30" height="30" alt="Youko's blog" />
+        <Image src="/img/logo.jpeg" width="30px" height="30px" alt="Youko's blog" />
       </a>
-      <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+      <button className="navbar-toggler" aria-label="dropdown-menu" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
         <span className="navbar-toggler-icon"></span>
       </button>
-      <div className="collapse navbar-collapse" id="navbarSupportedContent">
+      <header className="collapse navbar-collapse" id="navbarSupportedContent">
         <ul className="navbar-nav">
           <li className="nav-item">
             <Link href="/" >
               <a className="nav-link" style={{fontWeight: 'bold', color: '#eee'}} >首页</a>
+            </Link>
+          </li>
+          <li className="nav-item">
+            <Link href="/list" >
+              <a className="nav-link" style={{fontWeight: 'bold', color: '#eee'}} >全部类别</a>
             </Link>
           </li>
           <Categories categories={categories} />
@@ -59,7 +65,7 @@ const Header:(props:HeaderPropsType) => JSX.Element = ({user, categories}) => {
         <ul className="navbar-nav ml-auto">
           {user ? renderUserLists(user) : renderNoUserList()}
         </ul>
-      </div>
+      </header>
     </nav>
   );
 };

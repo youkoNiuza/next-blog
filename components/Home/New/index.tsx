@@ -3,16 +3,24 @@ import Link from 'next/link';
 import CommonCard from 'components/Common/Card/CommonCard';
 import Card from 'components/Common/Card';
 interface NewPropsType {
-  articles: Article[];
+  articles?: Article[];
+  title?: string;
+  titleDisabled?: boolean;
 }
 
-const New:(props: NewPropsType) => JSX.Element = ({ articles = [] }) => {
+const New:(props: NewPropsType) => JSX.Element = ({ articles = [], title = '最新博文', titleDisabled = false }) => {
+  const TitleLink = (disabled: boolean) => {
+    const clickableLink = (
+      <Link href={'/list'}>
+        <h2 className="mb-4" style={{cursor: 'pointer'}}>{title}</h2>
+      </Link>
+  );
+    return disabled ? <h2 className="mb-4">{title}</h2> : clickableLink;
+  };
   const renderPCCardList = () => {
     return (
       <div className="container mt-5 w-article">
-        <Link href={'/article'}>
-          <h2 className="mb-4" style={{cursor: 'pointer'}}>最新博文</h2>
-        </Link>
+        {TitleLink(titleDisabled)}
         <div className="row row-cols-4">
           {articles &&
           articles.map(article => <CommonCard key={article.id} article={article} />)
@@ -25,9 +33,7 @@ const New:(props: NewPropsType) => JSX.Element = ({ articles = [] }) => {
   const renderMobileCardList = () => {
     return (
       <div className="container mt-5 m-article">
-        <Link href="articles/hots">
-          <h2 className="mb-4" style={{cursor: 'pointer'}}>最新博文</h2>
-        </Link>
+        {TitleLink(titleDisabled)}
         <div className="card-deck">
           {articles &&
           articles.map(article => <Card key={article.id} article={article} hideButton={true} />)

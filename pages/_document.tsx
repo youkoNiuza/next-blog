@@ -1,5 +1,6 @@
 import * as React from 'react';
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document';
+import { fetchCategories } from 'core/api/fetchCategories';
 
 // 只在服务端渲染
 class MyDocument extends Document {
@@ -18,6 +19,7 @@ class MyDocument extends Document {
           <meta httpEquiv="x-ua-compatible" content="ie=edge"></meta>
           {/* 网站描述信息 */}
           <meta name="keywords" content="Youko"></meta>
+          <meta lang="zh-CN" />
           <link rel="icon" href="/favicon.ico" />
           <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" />
         </Head>
@@ -31,5 +33,19 @@ class MyDocument extends Document {
     );
   }
 }
+
+export async function getInitialProps() {
+  try {
+    const fetchCategoriesResult = await fetchCategories();
+    const categories = await fetchCategoriesResult.json();
+    return {
+      props: {
+        categories,
+      },
+    };
+  } catch (error) {
+    console.warn(error);
+  }
+};
 
 export default MyDocument;

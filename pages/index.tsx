@@ -1,10 +1,9 @@
 import * as React from 'react';
 import Head from 'next/head';
-import Live2D from 'components/Common/Live2D';
 import Header from 'components/Common/Header';
 import Banner from 'components/Home/Banner';
 import Footer from 'components/Common/Footer';
-import { getHome } from 'core/api/getHome';
+import { fetchHome } from 'core/api/fetchHome';
 import Hot from 'components/Home/Hot';
 import New from 'components/Home/New';
 interface HomePropsType {
@@ -14,24 +13,25 @@ interface HomePropsType {
   user: User;
 }
 
-const Home: (props: HomePropsType) => JSX.Element = ({ categories, articles, hots, user}) => {
+const Home: (props: HomePropsType) => JSX.Element = ({ articles, hots, user, categories}) => {
   const title:string = 'Youko\'s Blog';
   return (
     <>
       <Head><title>{title}</title></Head>
       <Header user={user} categories={categories} />
-      <Banner data={hots.slice(0, 3)} />
-      <Hot hots={hots} />
-      <New articles={articles} />
+      <main>
+        <Banner data={hots.slice(0, 3)} />
+        <Hot hots={hots} columns={3} rows={3} />
+        <New articles={articles} />
+      </main>
       <Footer />
-      <Live2D />
     </>
   );
 };
 
 export async function getServerSideProps(){
   try {
-    const data:Response = await getHome();
+    const data:Response = await fetchHome();
     return {
       props: data.json(),
     };

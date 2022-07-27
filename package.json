@@ -21,6 +21,7 @@
     "@types/bootstrap": "^5.1.12",
     "@types/holderjs": "^2.9.2",
     "@types/jquery": "^3.5.14",
+    "@types/next": "^9.0.0",
     "@types/node": "18.0.3",
     "@types/react": "18.0.15",
     "@types/react-dom": "18.0.6",
