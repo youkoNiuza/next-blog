@@ -27,7 +27,7 @@ const Header:React.FC<HeaderPropsType> = (props) => {
         </a>
         <div className="dropdown-menu">
           <a className="dropdown-item" href="https://www.qzzhai.top/admin">个人中心</a>
-          <a className="dropdown-item" href="/user/logout">退出</a>
+          <a className="dropdown-item" href="https://www.qzzhai.top/user/logout">退出</a>
         </div>
       </li>
     );
@@ -35,7 +35,7 @@ const Header:React.FC<HeaderPropsType> = (props) => {
 
   const renderNoUserList = () => (
     <li className="nav-item">
-      <Link href="/login"><a className="nav-link">登录</a></Link>
+      <a href="https://www.qzzhai.top/admin" className="nav-link">登录</a>
     </li>
   );
 

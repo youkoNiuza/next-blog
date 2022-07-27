@@ -19,7 +19,7 @@ const ArticlesInCategory:React.FC<ArticlesInCategoryPropsType> = ({articles, cat
     <>
       <Head><title>{title}</title></Head>
       <Header categories={categories} user={user} />
-      <New articles={articles} title={`当前栏目：${title}`} titleDisabled={true} />
+      <main><New articles={articles} title={`当前栏目：${title}`} titleDisabled={true} /></main>
       <Footer />
     </>
   );

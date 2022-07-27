@@ -17,7 +17,7 @@ const SearchPage:React.FC<SearchPagePropsType> = ({categories, articles, keyword
     <>
       <Head><title>搜索结果：{keyword || ''}</title></Head>
       <Header categories={categories} />
-      <New articles={articles} title={`搜索结果：${keyword || ''}`} titleDisabled />
+      <main><New articles={articles} title={`搜索结果：${keyword || ''}`} titleDisabled /></main>
       <Footer />
     </>
   );

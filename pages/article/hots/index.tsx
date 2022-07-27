@@ -16,7 +16,7 @@ const title = '全部热门文章';
 const HotArticles:React.FC<HotArticlesPropsType> = ({hots, user, categories})=> <>
   <Head><title>{title}</title></Head>
   <Header categories={categories} user={user}/>
-  <Hot hots={hots} title={title} titleDisabled={true} />
+  <main><Hot hots={hots} title={title} titleDisabled={true} /></main>
   <Footer />
 </>;
 

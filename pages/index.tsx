@@ -19,9 +19,11 @@ const Home: (props: HomePropsType) => JSX.Element = ({ articles, hots, user, cat
     <>
       <Head><title>{title}</title></Head>
       <Header user={user} categories={categories} />
-      <Banner data={hots.slice(0, 3)} />
-      <Hot hots={hots} columns={3} rows={3} />
-      <New articles={articles} />
+      <main>
+        <Banner data={hots.slice(0, 3)} />
+        <Hot hots={hots} columns={3} rows={3} />
+        <New articles={articles} />
+      </main>
       <Footer />
     </>
   );

@@ -20,7 +20,7 @@ const Article:React.FC<ArticlePropsType> = ({article, prev, nxt}) => {
       <nav>
         <ol className="breadcrumb bg-white">
           <li className="breadcrumb-item"><Link href="/">首页</Link></li>
-          <li className="breadcrumb-item"><a href={`/article/list/${ article.category_id }`}>{ article.name } </a></li>
+          <li className="breadcrumb-item"><a href={`/list/${ article.category_id }`}>{ article.name } </a></li>
           <li className="breadcrumb-item active">{ article.title } </li>
         </ol>
       </nav>

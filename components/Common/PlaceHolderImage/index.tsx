@@ -68,8 +68,7 @@ const PlaceholderImage: (props: PlaceholderImagePropsTypes) => JSX.Element = (pr
     overflow: 'hidden',
     textOverflow: 'ellipsis',
   };
-  // @ts-ignore
-  return <div style={style} onClick={() => router.push(`article/${id}`)} className={className} alt={title}>
+  return <div style={style} onClick={() => router.push(`article/${id}`)} className={className}>
     <span style={titleStyle}>
       {title}
     </span>

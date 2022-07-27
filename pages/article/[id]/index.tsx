@@ -21,7 +21,7 @@ const ArticleDetail:React.FC<ArticleDetailPropsType> = ({ article, nxt, prev, ca
     <>
       <Head><title>{article.title}</title></Head>
       <Header categories={categories} user={user}/>
-      <Article article={article} nxt={nxt} prev={prev}/>
+      <main><Article article={article} nxt={nxt} prev={prev}/></main>
       <Footer />
     </>
   );

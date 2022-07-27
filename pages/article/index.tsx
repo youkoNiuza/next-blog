@@ -15,7 +15,7 @@ const ArticleList:React.FC<ArticleListPropsType> = ({articles, categories, user}
   return <>
     <Head><title>全部文章</title></Head>
     <Header categories={categories} user={user}/>
-    <New title="全部文章" articles={articles} titleDisabled={true} />
+    <main><New title="全部文章" articles={articles} titleDisabled={true} /></main>
     <Footer />
   </>;
 };
